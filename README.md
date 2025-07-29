@@ -149,21 +149,21 @@ typedef struct _wsftprmKillBuffer {
 
 This `C` project includes a proof-of-concept (POC) that enumerates EDR-related processes and repeatedly sends the vulnerable `IOCTL` to terminate them in a loop, continuing until the user presses `q` to exit.
 
-#### EDR's
+### EDR's
 Currently, the targeted EDR solutions and associated processes are:
 - Microsoft Defender Antivirus
 - Microsoft Defender for Endpoint
 - Elastic EDR
 - Sysmon
 
-#### What does it do
+### What does it do
 - Writes vulnerable driver to `C:\Windows\System32\Drivers\<FILE>` and loads the driver (Configurable in `settings.h`)
 - Keeps looping and enumerating EDR Processes
 - Kills EDR Process using the IOCTL of the vulnerable driver
 - Exits when q is pressed
 - Unloads the vulnerable driver and removes the file from `C:\Windows\System32\Drivers\<FILE>`
 
-#### Test
+### Test
 The testing environment has Secure Boot, Virtualization-Based Security (VBS), and Hypervisor-Protected Code Integrity (HVCI) enabled. These mitigations were verified using my [EnumMitigations](https://github.com/0xJs/EnumMitigations) tool.
 
 <img width="720" height="222" alt="Pasted image 20250727190301" src="https://github.com/user-attachments/assets/8e772084-4d4b-45da-8407-7d3386554f86" />
@@ -171,7 +171,7 @@ The testing environment has Secure Boot, Virtualization-Based Security (VBS), an
 <img width="1553" height="900" alt="Pasted image 20250727190532" src="https://github.com/user-attachments/assets/38fbdfab-2ddc-409b-bb5f-c387255484e2" />
 
 
-#### Cleanup
+### Cleanup
 - The payload should unload and remove the driver. If it didn't then manually remove it
 
 ```
