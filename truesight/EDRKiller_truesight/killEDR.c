@@ -3,98 +3,27 @@
 #include "common.h"
 
 // List of known EDR-related process names
-// Used for detecting active EDR agents in memory or on disk
 const wchar_t* g_EDRNames[] = {
-	// Microsoft Defender for Endpoint and Antivirus
-	L"MsMpEng.exe",                 // Microsoft Defender AV
-	L"MsSense.exe",                 // Microsoft Defender ATP
-	L"SenseIR.exe",                 // Defender Incident Response
-	L"SenseNdr.exe",                // Defender NDR
-	L"SenseCncProxy.exe",           // Defender CNC Proxy
-	L"SenseSampleUploader.exe",     // Defender Sample Uploader
-	L"SenseTVM.exe",                // Defender Vulnerability Management
-	L"smartscreen.exe",             // Windows SmartScreen
+	// Microsoft Defender Antivirus
+	L"MsMpEng.exe",                 // AV service
 	L"NisSrv.exe",                  // Network Inspection Service
-	L"MpDefenderCoreService.exe",   // Defender Core Service
+	L"MpDefenderCoreService.exe",   // Core platform service
+	L"smartscreen.exe",             // SmartScreen
+
+	// Microsoft Defender for Endpoint
+	L"MsSense.exe",                 // Sensor service
+	L"SenseIR.exe",                 // IR process
+	L"SenseNdr.exe",                // Network Detection and Response
+	L"SenseCncProxy.exe",           // CNC proxy
+	L"SenseSampleUploader.exe",     // Sample uploader
+	L"SenseTVM.exe",                // Threat & Vulnerability Management
 
 	// Elastic EDR
-	L"elastic-agent.exe",           // Elastic Agent
-	L"elastic-endpoint.exe",        // Elastic Endpoint
-	L"filebeat.exe",                // Elastic Filebeat
-	L"metricbeat.exe",              // Elastic Metricbeat
-	L"winlogbeat.exe",              // Elastic Winlogbeat
-
-	// Trellix (formerly McAfee) EDR
-	L"xagt.exe",                    // Trellix Agent
-
-	// Qualys
-	L"QualysAgent.exe",             // Qualys Agent
-
-	// SentinelOne
-	L"SentinelAgent.exe",
-	L"SentinelAgentWorker.exe",
-	L"SentinelServiceHost.exe",
-	L"SentinelStaticEngine.exe",
-	L"SentinelStaticEngineScanner.exe",
-	L"SentinelHelperService.exe",
-	L"SentinelBrowserNativeHost.exe",
-	L"LogProcessorService.exe",
-
-	// Cylance
-	L"CylanceSvc.exe",              // Cylance service
-
-	// Cybereason
-	L"AmSvc.exe",
-	L"CrAmTray.exe",
-	L"CrsSvc.exe",
-	L"ExecutionPreventionSvc.exe",
-	L"CybereasonAV.exe",
-
-	// Carbon Black EDR
-	L"cb.exe",                      // Carbon Black legacy
-
-	// Carbon Black Cloud
-	L"RepMgr.exe",
-	L"RepUtils.exe",
-	L"RepUx.exe",
-	L"RepWAV.exe",
-	L"RepWSC.exe",
-
-	// Tanium
-	L"TaniumClient.exe",
-	L"TaniumCX.exe",
-	L"TaniumDetectEngine.exe",
-
-	// Palo Alto Networks Cortex XDR / Traps
-	L"Traps.exe",
-	L"cyserver.exe",
-	L"CyveraService.exe",
-	L"CyvrFsFlt.exe",
-
-	// FortiEDR
-	L"fortiedr.exe",
-
-	// Cisco Secure Endpoint (formerly AMP)
-	L"sfc.exe",
-
-	// ESET Inspect
-	L"EIConnector.exe",
-	L"ekrn.exe",
-
-	// Harfanglab EDR
-	L"hurukai.exe",
-
-	// TrendMicro Apex One
-	L"CETASvc.exe",
-	L"WSCommunicator.exe",
-	L"EndpointBasecamp.exe",
-	L"TmListen.exe",
-	L"Ntrtscan.exe",
-	L"TmWSCSvc.exe",
-	L"PccNTMon.exe",
-	L"TMBMSRV.exe",
-	L"CNTAoSMgr.exe",
-	L"TmCCSF.exe"
+	L"elastic-agent.exe",       // Core Elastic Agent 
+	L"elastic-endpoint.exe",    // Elastic Endpoint Security (EDR component)
+	L"filebeat.exe",            // Collects and ships log files
+	L"metricbeat.exe",          // Collects system and service metrics
+	L"winlogbeat.exe"			// Collects Windows Event Logs
 };
 
 //// Just kill msedge for testing

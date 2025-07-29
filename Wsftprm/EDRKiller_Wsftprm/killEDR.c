@@ -22,9 +22,6 @@ const wchar_t* g_EDRNames[] = {
 	L"filebeat.exe",            // Collects and ships log files
 	L"metricbeat.exe",          // Collects system and service metrics
 	L"winlogbeat.exe"			// Collects Windows Event Logs
-
-	// Sysmon
-	L"Sysmon.exe",
 };
 
 //// Just kill msedge for testing

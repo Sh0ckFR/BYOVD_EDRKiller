@@ -52,10 +52,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-
-# Visual Studio project and solution files
-*.vcxproj
-*.vcxproj.filters
 *.vcxproj.user
 
 # Intermediate folders
