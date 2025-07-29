@@ -5,7 +5,7 @@
 
 By using this project, you agree to use it responsibly and ethically. The author assumes no liability for misuse or any consequences arising from the use of this project.
 
-## General
+# General
 
 To practice Bring Your Own Vulnerable Driver (BYOVD) techniques covered in the CETP course, I set out to build an EDR-killer using a vulnerable driver that is not currently blocked by Microsoft's [recommended driver blocklist](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/microsoft-recommended-driver-block-rules#vulnerable-driver-blocklist-xml) so I can load it on my latest W11 testing system with secure boot and HVCI enabled.
 
@@ -23,7 +23,7 @@ Interestingly, the `wsftprm.sys` driver, listed on [LOLDDrivers](https://www.lol
 
 The vulnerability in this driver was discovered by [Northwave](https://northwave-cybersecurity.com/vulnerability-notice-topaz-antifraud), indicating that it could be used for a EDR-killer. Making it a viable candidate for further exploration and development of a proof-of-concept.
 
-## Reversing the driver
+# Reversing the driver
 
 Disclaimer: I am by no means an experienced reverse engineer. The vulnerability in this driver was already publicly known, and I did not discover it myself. Full credit for the original vulnerability research goes to [Northwave](https://northwave-cybersecurity.com/vulnerability-notice-topaz-antifraud).
 
@@ -130,7 +130,7 @@ These functions use XOR-encoded byte sequences to obfuscate the symbolic link na
 
 ChatGPT successfully decrypted the obfuscated symbolic link string as: `\\DosDevices\\Warsaw_PM`. This was the final missing piece needed to fully interact with the driver and begin building our EDRKiller.
 
-#### Summary of Key Details
+## Summary of Key Details
 -  **Device Name:** `\\DosDevices\\Warsaw_PM`  
 	  - Accessed from user-mode as `\\\\.\\Warsaw_PM`)
 - **IOCTL Code:** `0x22201C`  (Triggers the vulnerable process termination routine)
@@ -145,7 +145,7 @@ typedef struct _wsftprmKillBuffer {
 } wsftprmKillBuffer;
 ```
 
-## Proof of Concept
+# Proof of Concept
 
 This `C` project includes a proof-of-concept (POC) that enumerates EDR-related processes and repeatedly sends the vulnerable `IOCTL` to terminate them in a loop, continuing until the user presses `q` to exit.
 
