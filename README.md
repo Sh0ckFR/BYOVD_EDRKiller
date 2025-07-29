@@ -169,3 +169,13 @@ The testing environment has Secure Boot, Virtualization-Based Security (VBS), an
 <img width="720" height="222" alt="Pasted image 20250727190301" src="https://github.com/user-attachments/assets/8e772084-4d4b-45da-8407-7d3386554f86" />
 
 <img width="1553" height="900" alt="Pasted image 20250727190532" src="https://github.com/user-attachments/assets/38fbdfab-2ddc-409b-bb5f-c387255484e2" />
+
+
+#### Cleanup
+- The payload should unload and remove the driver. If it didn't then manually remove it
+
+```
+sc stop wsftprm
+sc delete wsftprm
+del C:\Windows\System32\Drivers\wsftprm.sys
+```
