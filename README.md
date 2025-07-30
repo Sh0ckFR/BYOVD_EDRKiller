@@ -17,7 +17,7 @@ From [@d1rkmtr](https://x.com/d1rkmtr/status/1947664686897365177)'s tweet, anoth
 
 <img width="990" height="621" alt="Pasted image 20250727172100" src="https://github.com/user-attachments/assets/4ab894f9-0d4e-4cd1-9562-921487d3a500" />
 
-Interestingly, the `wsftprm.sys` driver, listed on [LOLDDrivers](https://www.loldrivers.io/drivers/30e8d598-2c60-49e4-953b-a6f620da1371/), is not on Microsoft's blocklis and loads successfully on fully patched Windows 11 with Secure Boot and HVCI enabled. Its digital signature is valid and accepted by the system.
+Interestingly, the `wsftprm.sys` driver, listed on [LOLDDrivers](https://www.loldrivers.io/drivers/30e8d598-2c60-49e4-953b-a6f620da1371/), is not on Microsoft's blocklist and loads successfully on fully patched Windows 11 with Secure Boot and HVCI enabled. Its digital signature is valid and accepted by the system.
 
 <img width="978" height="602" alt="Pasted image 20250727172206" src="https://github.com/user-attachments/assets/063a96d1-5f95-48d0-b897-55f2bbba1489" />
 
