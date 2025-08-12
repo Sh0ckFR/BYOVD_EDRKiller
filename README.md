@@ -179,3 +179,8 @@ sc stop wsftprm
 sc delete wsftprm
 del C:\Windows\System32\Drivers\wsftprm.sys
 ```
+
+## Credits
+I got inspired to expand upon the tools provided in the Evasion Lab (CETP from [Altered Security](https://www.alteredsecurity.com/evasionlab)).
+
+To NorthWave for finding the vulnerable driver
