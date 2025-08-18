@@ -104,6 +104,7 @@ BOOL EnumerateEDRProcessesPID(OUT PPROCESS_ENTRY* ppProcessList, OUT DWORD* pdwP
 	);
 	if (STATUS != 0x0) {
 		error("NtQuerySystemInformation - failed with error: 0x%0.8X", STATUS);
+		HeapFree(hGetProcessHeap, 0, pSystemProcInfo);
 		bSTATE = FALSE;
 		goto _cleanUp;
 	}
