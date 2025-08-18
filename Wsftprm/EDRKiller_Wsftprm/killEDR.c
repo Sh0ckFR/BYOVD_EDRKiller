@@ -367,6 +367,3 @@ _cleanUp:
 	return bSTATE;
 
 }
-
-
-
