@@ -280,9 +280,19 @@ BOOL KillEdrProcesses() {
 
 		// Enumerate all the EDR processes
 		if (!EnumerateEDRProcessesPID(&pProcList, &dwProcCount)) {
-			error("EnumerateEDRProcessesPID - Failed to enumerate running processes");
-			bSTATE = FALSE;
-			goto _cleanUp;
+			error("EnumerateEDRProcessesPID - Failed to enumerate running processes, sleeping and continuiing");
+			
+			// Make sure nothing leaks if allocation happened inside the function
+			if (pProcList) {
+				FreeEDRProcessList(pProcList, dwProcCount, hProcessHeap);
+				pProcList = NULL;
+				dwProcCount = 0;
+			}
+
+			// Sleep and retry next interation
+			Sleep(g_SLEEPTIME);
+			continue;
+
 		}
 		info_t("EnumerateEDRProcessesPID - %i EDR processes enumerated", dwProcCount);
 
