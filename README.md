@@ -17,7 +17,7 @@ From [@d1rkmtr](https://x.com/d1rkmtr/status/1947664686897365177)'s tweet, anoth
 
 <img width="990" height="621" alt="Pasted image 20250727172100" src="https://github.com/user-attachments/assets/4ab894f9-0d4e-4cd1-9562-921487d3a500" />
 
-Interestingly, the `wsftprm.sys` driver, listed on [LOLDDrivers](https://www.loldrivers.io/drivers/30e8d598-2c60-49e4-953b-a6f620da1371/), is not on Microsoft's blocklis and loads successfully on fully patched Windows 11 with Secure Boot and HVCI enabled. Its digital signature is valid and accepted by the system.
+Interestingly, the `wsftprm.sys` driver, listed on [LOLDDrivers](https://www.loldrivers.io/drivers/30e8d598-2c60-49e4-953b-a6f620da1371/), is not on Microsoft's blocklist and loads successfully on fully patched Windows 11 with Secure Boot and HVCI enabled. Its digital signature is valid and accepted by the system.
 
 <img width="978" height="602" alt="Pasted image 20250727172206" src="https://github.com/user-attachments/assets/063a96d1-5f95-48d0-b897-55f2bbba1489" />
 
@@ -149,14 +149,38 @@ typedef struct _wsftprmKillBuffer {
 
 This `C` project includes a proof-of-concept (POC) that enumerates EDR-related processes and repeatedly sends the vulnerable `IOCTL` to terminate them in a loop, continuing until the user presses `q` to exit.
 
+### EDR's
 Currently, the targeted EDR solutions and associated processes are:
 - Microsoft Defender Antivirus
 - Microsoft Defender for Endpoint
 - Elastic EDR
 - Sysmon
 
+### What does it do
+- Writes vulnerable driver to `C:\Windows\System32\Drivers\<FILE>` and loads the driver (Configurable in `settings.h`)
+- Keeps looping and enumerating EDR Processes
+- Kills EDR Process using the IOCTL of the vulnerable driver
+- Exits when q is pressed
+- Unloads the vulnerable driver and removes the file from `C:\Windows\System32\Drivers\<FILE>`
+
+### Test
 The testing environment has Secure Boot, Virtualization-Based Security (VBS), and Hypervisor-Protected Code Integrity (HVCI) enabled. These mitigations were verified using my [EnumMitigations](https://github.com/0xJs/EnumMitigations) tool.
 
 <img width="720" height="222" alt="Pasted image 20250727190301" src="https://github.com/user-attachments/assets/8e772084-4d4b-45da-8407-7d3386554f86" />
 
 <img width="1553" height="900" alt="Pasted image 20250727190532" src="https://github.com/user-attachments/assets/38fbdfab-2ddc-409b-bb5f-c387255484e2" />
+
+
+### Cleanup
+- The payload should unload and remove the driver. If it didn't then manually remove it
+
+```
+sc stop wsftprm
+sc delete wsftprm
+del C:\Windows\System32\Drivers\wsftprm.sys
+```
+
+## Credits
+I got inspired to expand upon the tools provided in the Evasion Lab (CETP from [Altered Security](https://www.alteredsecurity.com/evasionlab)), taught by [Saad Ahla](https://www.linkedin.com/in/saad-ahla/).
+
+To NorthWave for finding the vulnerable driver
