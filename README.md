@@ -5,6 +5,10 @@
 
 By using this project, you agree to use it responsibly and ethically. The author assumes no liability for misuse or any consequences arising from the use of this project.
 
+Tested on:
+- Windows 11 (24H2)
+- Windows Server 2022 (21H2)
+
 # General
 
 To practice Bring Your Own Vulnerable Driver (BYOVD) techniques covered in the CETP course, I set out to build an EDR-killer using a vulnerable driver that is not currently blocked by Microsoft's [recommended driver blocklist](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/microsoft-recommended-driver-block-rules#vulnerable-driver-blocklist-xml) so I can load it on my latest W11 testing system with secure boot and HVCI enabled.
